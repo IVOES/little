@@ -1,0 +1,143 @@
+src/little.c:939:8: style: Condition '!allowed' is always true [knownConditionTrueFalse]
+   if (!allowed) goto expr_end;
+       ^
+src/little.c:929:22: note: Assignment 'allowed=0', assigned value is 0
+   uint8_t allowed = 0;
+                     ^
+src/little.c:930:8: note: Assuming condition is false
+   if (last) switch (last->type)
+       ^
+src/little.c:939:8: note: Condition '!allowed' is always true
+   if (!allowed) goto expr_end;
+       ^
+src/little.c:183:37: style: Unsigned expression 'i' can't be negative so it is unnecessary to test it. [unsignedPositive]
+ for (uint32_t i = vm->depth - 1; i >= 0; --i)
+                                    ^
+src/little.c:1516:18: error: Expression '*vm->top++=(*(vm->top-1))' depends on order of evaluation of side effects [unknownEvaluationOrder]
+ case LT_OP_DUP: PUSH(TOP); NEXT;
+                 ^
+src/little.c:1560:19: error: Expression '*vm->top++=lt_table_get(vm,vm->global,*(--vm->top))' depends on order of evaluation of side effects [unknownEvaluationOrder]
+ case LT_OP_GETG: PUSH(lt_table_get(vm, vm->global, POP())); NEXT;
+                  ^
+src/little.c:1567:40: error: Expression '*(--vm->top),*(vm->top-1)' depends on order of evaluation of side effects [unknownEvaluationOrder]
+ case LT_OP_EQ:  TOP = (lt_equals(POP(), TOP) ? LT_VALUE_TRUE : LT_VALUE_FALSE); NEXT;
+                                       ^
+src/little.c:1568:40: error: Expression '*(--vm->top),*(vm->top-1)' depends on order of evaluation of side effects [unknownEvaluationOrder]
+ case LT_OP_NEQ: TOP = (lt_equals(POP(), TOP) ? LT_VALUE_FALSE : LT_VALUE_TRUE); NEXT;
+                                       ^
+src/little.c:1575:18: error: Expression '*vm->top++=(!((*(--vm->top))==((lt_Value)((0b0111111111110000000000000000000000000000000000000000000000000000|0b0000000000001000000000000000000000000000000000000000000000000000)|0b0000000000000001000000000000000000000000000000000000000000000000))||(*(--vm->top))==((lt_Value)((0b0111111111110000000000000000000000000000000000000000000000000000|0b0000000000001000000000000000000000000000000000000000000000000000)|0b0000000000000011000000000000000000000000000000000000000000000000))))&&(!((*(--vm->top))==((lt_Value)((0b0111111111110000000000000000000000000000000000000000000000000000|0b0000000000001000000000000000000000000000000000000000000000000000)|0b0000000000000001000000000000000000000000000000000000000000000000))||(*(--vm->top))==((lt_Value)((0b0111111111110000000000000000000000000000000000000000000000000000|0b0000000000001000000000000000000000000000000000000000000000000000)|0b0000000000000011000000000000000000000000000000000000000000000000))))?((lt_Value)((0b0111111111110000000000000000000000000000000000000000000000000000|0b0000000000001000000000000000000000000000000000000000000000000000)|(0b0000000000000001000000000000000000000000000000000000000000000000|1))):((lt_Value)((0b0111111111110000000000000000000000000000000000000000000000000000|0b0000000000001000000000000000000000000000000000000000000000000000)|0b0000000000000001000000000000000000000000000000000000000000000000))' depends on order of evaluation of side effects [unknownEvaluationOrder]
+ case LT_OP_AND: PUSH(LT_IS_TRUTHY(POP()) && LT_IS_TRUTHY(POP()) ? LT_VALUE_TRUE : LT_VALUE_FALSE); NEXT;
+                 ^
+src/little.c:186:17: style: Local variable 'info' shadows outer variable [shadowVariable]
+  lt_DebugInfo* info = _lt_get_debuginfo(frame->callee);
+                ^
+src/little.c:176:16: note: Shadowed declaration
+ lt_DebugInfo* info = _lt_get_debuginfo(topmost->callee);
+               ^
+src/little.c:186:17: note: Shadow variable
+  lt_DebugInfo* info = _lt_get_debuginfo(frame->callee);
+                ^
+src/little.c:187:15: style: Local variable 'loc' shadows outer variable [shadowVariable]
+  lt_DebugLoc loc = _lt_get_location(info, frame->ip - (lt_Op*)frame->code->data);
+              ^
+src/little.c:177:14: note: Shadowed declaration
+ lt_DebugLoc loc = _lt_get_location(info, topmost->ip - (lt_Op*)topmost->code->data);
+             ^
+src/little.c:187:15: note: Shadow variable
+  lt_DebugLoc loc = _lt_get_location(info, frame->ip - (lt_Op*)frame->code->data);
+              ^
+src/little.c:189:15: style: Local variable 'name' shadows outer variable [shadowVariable]
+  const char* name = "<unknown>";
+              ^
+src/little.c:179:14: note: Shadowed declaration
+ const char* name = "<unknown>";
+             ^
+src/little.c:189:15: note: Shadow variable
+  const char* name = "<unknown>";
+              ^
+src/little.c:662:15: style: Local variable 'body' shadows outer variable [shadowVariable]
+    lt_Buffer body = lt_buffer_new(sizeof(lt_AstNode*));
+              ^
+src/little.c:627:14: note: Shadowed declaration
+   lt_Buffer body = lt_buffer_new(sizeof(lt_AstNode*));
+             ^
+src/little.c:662:15: note: Shadow variable
+    lt_Buffer body = lt_buffer_new(sizeof(lt_AstNode*));
+              ^
+src/little.c:648:18: style: Local variable 'expr' shadows outer variable [shadowVariable]
+     lt_AstNode* expr = _lt_get_node_of_type(vm, current, p, LT_AST_NODE_EMPTY);
+                 ^
+src/little.c:621:16: note: Shadowed declaration
+   lt_AstNode* expr = _lt_get_node_of_type(vm, current, p, LT_AST_NODE_EMPTY);
+               ^
+src/little.c:648:18: note: Shadow variable
+     lt_AstNode* expr = _lt_get_node_of_type(vm, current, p, LT_AST_NODE_EMPTY);
+                 ^
+src/little.c:1131:15: style: Local variable 'current' shadows outer variable [shadowVariable]
+  lt_AstNode* current = *(lt_AstNode**)lt_buffer_at(&result, i);
+              ^
+src/little.c:839:12: note: Shadowed declaration
+ lt_Token* current = start;
+           ^
+src/little.c:1131:15: note: Shadow variable
+  lt_AstNode* current = *(lt_AstNode**)lt_buffer_at(&result, i);
+              ^
+src/little.c:1825:14: style: Local variable 'idx' shadows outer variable [shadowVariable]
+    uint32_t idx = _lt_find_local(vm, scope, (lt_Token*)lt_buffer_at(upvals, i));
+             ^
+src/little.c:1815:12: note: Shadowed declaration
+  uint16_t idx = _lt_push_constant(vm, constants, as_val);
+           ^
+src/little.c:1825:14: note: Shadow variable
+    uint32_t idx = _lt_find_local(vm, scope, (lt_Token*)lt_buffer_at(upvals, i));
+             ^
+src/little.c:1883:14: style: Local variable 'jidx' shadows outer variable [shadowVariable]
+    uint32_t jidx = code_body->length;
+             ^
+src/little.c:1863:12: note: Shadowed declaration
+  uint32_t jidx = code_body->length;
+           ^
+src/little.c:1883:14: note: Shadow variable
+    uint32_t jidx = code_body->length;
+             ^
+src/little_std.c:103:34: warning: Either the condition '!fp' is redundant or there is possible null pointer dereference: fp. [nullPointerRedundantCheck]
+    fread(text, 1, sizeof(text), fp);
+                                 ^
+src/little_std.c:100:9: note: Assuming that condition '!fp' is not redundant
+    if (!fp) lt_runtime_error(vm, "Failed to open file for require!");
+        ^
+src/little_std.c:103:34: note: Null pointer dereference
+    fread(text, 1, sizeof(text), fp);
+                                 ^
+src/little_std.c:104:12: warning: Either the condition '!fp' is redundant or there is possible null pointer dereference: fp. [nullPointerRedundantCheck]
+    fclose(fp);
+           ^
+src/little_std.c:100:9: note: Assuming that condition '!fp' is not redundant
+    if (!fp) lt_runtime_error(vm, "Failed to open file for require!");
+        ^
+src/little_std.c:104:12: note: Null pointer dereference
+    fclose(fp);
+           ^
+src/little_std.c:193:18: style: Variable 'len' is assigned a value that is never used. [unreadVariable]
+    uint32_t len = lt_array_length(arr);
+                 ^
+src/little_std.c:476:0: style: The function '_lt_string_typeof' is never used. [unusedFunction]
+
+^
+src/little.c:1399:0: style: The function 'lt_at' is never used. [unusedFunction]
+
+^
+src/little.c:2186:0: style: The function 'lt_get_ptr' is never used. [unusedFunction]
+
+^
+src/little.c:2135:0: style: The function 'lt_make_array' is never used. [unusedFunction]
+
+^
+src/little.c:2179:0: style: The function 'lt_make_ptr' is never used. [unusedFunction]
+
+^
+src/little.c:2130:0: style: The function 'lt_table_pop' is never used. [unusedFunction]
+
+^
+nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingIncludeSystem]
+
